@@ -1,0 +1,609 @@
+<!DOCTYPE HTML>
+<html>
+<!-- 
+feel free to remove all of this!
+
+template coded by doqmeat.
+
+live preview: https://doqmeat.com/notebook/F2U/preview/notebook
+
+more html and css resources @ https://www.w3schools.com/ +  https://developer.mozilla.org/en-US/docs/Learn/HTML
+
+more resources + graphics links can be found here if you need some pointers https://doqmeat.com/notebook
+
+feel free to contact me for any questions! -->
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- browser tab name -->
+	<title>nanowrimo page</title>
+	
+	<!-- browser tab icon -->
+	<link rel="shortcut icon" href="evil eye.png">
+	
+	<!-- custom font. i stole it from stackexchange which is why it says junebug in there. whoops -->
+	<style>
+    @font-face { font-family: test; src: url('mikiyu.ttf'); } 
+    .junebug { font-family: test; font-size: 4.2em; }
+</style>
+
+  <!-- custom link colors -->
+  <style>
+          a:link {
+          color: #0067D4;
+          background-color: transparent;
+          text-decoration: none;
+        }
+        
+        a:visited {
+          color: grey;
+          background-color: transparent;
+          text-decoration: none;
+        }
+        
+        a:hover {
+          color: #D088BC;
+          background-color: transparent;
+          text-decoration: underline;
+        }
+  </style>
+	<style>
+		html {
+			scrollbar-color: #c5dca0 #add8e6;
+			/*			scrollbar for firefox users*/
+		}
+
+		body {
+			background: url(quilt.jpg); /* this is the bg for the whole browser page */
+			background-size:     cover;                      
+      background-repeat:   no-repeat;
+      background-position: center center;
+			margin: 0px;
+			word-wrap: break-word;
+			font-size: 19px;
+			line-height: 25px;
+			word-spacing: 4px;
+			font-family: test;
+			color: black;
+		}
+
+		mark {
+			background: lightgoldenrodyellow;
+		}
+
+		#wrapper-index {
+			/* the notebook's cover */
+			background: url(bluesky.jpg);
+			position: relative;
+			margin: auto;
+			margin-top: 30px;
+			margin-bottom: 35px;
+			width: 1108px;
+			padding: 20px 10px 15px 10px;
+			border-radius: 20px;
+			border: 1px solid black;
+		}
+
+		/*this is my ugly binder spiral! feel free to remove it or change it. it wont mess the rest of the code! */
+		#tab1-wrapper:after,
+		#tab2-wrapper:after,
+		#tab3-wrapper:after,
+		#tab4-wrapper:after,
+		#tab5-wrapper:after,
+		#tab6-wrapper:after,
+		#tab7-wrapper:after,
+		#tab8-wrapper:after {
+			content: url(https://files.catbox.moe/4v6k8c.png);
+			position: absolute;
+			z-index: 10;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			pointer-events: none;
+		}
+
+		/* PAGES CSS */
+
+		.paper {
+			/*the CSS of both "pages" boxes. you can choose the look of ALL pages here */
+			background: url(https://files.catbox.moe/evxip4.png); /*i think this background asset might be unnecessary but im scared to delete it */
+			font-family: test;
+			font-size: 16px;
+			/*background: url(https://files.catbox.moe/bdbuwr.png);*/
+			background: url(grid-yellow2.png); /* this is the page grid for the right hand tabs! you will have to replace all bgs with your own files but i linked to where i got most of mine in the repository tab */
+			border-color: lightcoral;
+			z-index: 5;
+			position: relative;
+			display: inline-block;
+			box-sizing: border-box;
+			border: 1px solid lightblue;
+			height: 600px;
+		}
+
+		.left {
+			width: 490px;
+			margin-left: 50px;
+			margin-right: 10px;
+			border-radius: 10px 0px 0px 10px;
+			overflow: hidden;
+		}
+
+		.left-in {
+			/*			the main purpose of this class if so the scrollbar of left pages arent obscured by the bind spiral */
+			padding: 15px 10px 15px 25px;
+			height: 100%;
+			margin-right: 15px;
+			overflow: auto;
+		}
+
+		.right {
+			padding: 15px 25px;
+			width: 490px;
+			margin-left: 10px;
+			border-radius: 0px 10px 10px 0px;
+			overflow: auto;
+		}
+
+		/* you can also customize the look of SPECIFIC pages. take TAB 2 for example: */
+		/* i wanted the left set of notebook tags to have different paper so i made them custom */
+
+		#tab1-p {
+			font-family: test;
+			font-size: 14px;
+			background: url("Smooth-Notebook.PNG"); /* you'll have to replace all of these w your own images, etc */
+			border-color: lightcoral;
+		}
+		
+		#tab2-p {
+			font-family: test;
+			font-size: 14px;
+			background: url("Smooth-Notebook.PNG");
+			border-color: lightcoral;
+		}
+		
+		#tab3-p {
+			font-family: test;
+			font-size: 14px;
+			background: url("Smooth-Notebook.PNG");
+			border-color: lightcoral;
+		}
+		
+		#tab4-p {
+			font-family: test;
+			font-size: 14px;
+			background: url("Smooth-Notebook.PNG");
+			border-color: lightcoral;
+		}
+
+		/* tab buttons CSS stuff */
+
+		.tab {
+			/* for the ones on the left */
+			width: 590px;
+			height: 50px;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			rotate: -90deg;
+			top: -10px;
+			left: -232px;
+		}
+
+		.tab2 {
+			/* for the ones on the right */
+			width: 590px;
+			height: 50px;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			rotate: 90deg;
+			top: 590px;
+			right: -232px;
+		}
+
+		.tab button,
+		.tab2 button {
+			/*this is the look of the TABS! */
+			z-index: 1;
+			position: relative;
+			vertical-align: top;
+			width: 120px;
+			margin: 0px 8px;
+			padding: 10px 0px 30px 0px;
+			font-family: test;
+			border: none;
+			cursor: help;
+			font-size: 16px;
+			transition-duration: 0.5s;
+			top: 10px;
+			border-radius: 10px 10px 0 0;
+			border: 1px solid grey;
+		}
+
+		/* here you can change the color of each individual TAB button*/
+		/* https://www.rapidtables.com/convert/color/rgb-to-hex.html <--LIFESAVING converter. backbone of my website */
+		.tab1-b {
+			background: #C5DCA0;
+		}
+
+		.tab2-b {
+			background: #B6A7DC;
+		}
+
+		.tab3-b {
+			background: #F9DAD0;
+		}
+
+		.tab4-b {
+			background: #F5F2B8;
+		}
+
+		.tab5-b {
+			background: #F1B46A;
+		}
+		
+		.tab6-b {
+			background: #F1B46A;
+		}
+		
+		.tab7-b {
+			background: #F1B46A;
+		}
+		
+		.tab8-b {
+			background: #F1B46A;
+		}
+
+		/* hover effect of TAB*/
+		.tab button:hover,
+		.tab2 button:hover {
+			top: 0px;
+			cursor: -webkit-grab;
+			cursor: grab;
+		}
+
+		/* selected TAB effect aka when its focused */
+		.tab button:focus,
+		.tab2 button:focus {
+			top: 0px;
+			cursor: -webkit-grabbing;
+			cursor: grabbing;
+			box-shadow: 1px 1px 20px 1px grey;
+			outline: none;
+		}
+
+		/* custom scrollbar for chrome users, firefox users cant see this */
+		::-webkit-scrollbar {
+			width: 8px;
+			height: 8px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			background: white;
+			border: 1px solid black;
+			border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-thumb:horizontal {
+			background: white;
+			border: 1px solid black;
+			border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-track {
+			border-radius: 10px;
+			background: transparent;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<!-- 	NOTEBOOK wrapper -->
+	<div id="wrapper-index">
+
+		<div class="tab">
+			<button class="tablinks tab4-b" onclick="openTab('tab4-wrapper')">Repository</button>
+			<button class="tablinks tab3-b" onclick="openTab('tab3-wrapper')">tab 3</button>
+			<button class="tablinks tab2-b" onclick="openTab('tab2-wrapper')">tab 2</button>
+			<button class="tablinks tab1-b" onclick="openTab('tab1-wrapper')" id="defaultOpen">Progress</button> <!-- 	id="defaultOpen" chooses which tab the notebook will have open when page is loaded -->
+		</div>
+
+		<div class="tab2">
+			<button class="tablinks tab5-b" onclick="openTab('tab5-wrapper')">Week 1 Wrapup</button>
+			<button class="tablinks tab6-b" onclick="openTab('tab6-wrapper')">Week 2 Wrapup</button>
+			<button class="tablinks tab7-b" onclick="openTab('tab7-wrapper')">Week 3 Wrapup</button>
+			<button class="tablinks tab8-b" onclick="openTab('tab8-wrapper')">Week 4 Wrapup</button>
+		</div>
+
+		<!-- 	TAB 1 wrapper -->
+		<div id="tab1-wrapper" class="tabcontent">
+			<div id="tab1-p" class="paper left">
+				<div class="left-in">
+				
+				  <!-- this is a little wordcount widget -->
+					<a href="https://www.languageisavirus.com/nanowrimo/word-meter.php" target="_blank" rel="noreferrer noopener"  title="NaNoWriMo writing toys games & gadgets"><div style="width:200px;height:15px;background:#FFFFFF;border:1px solid #000000;"><div style="width:0%;height:15px;background:#9999FF;font-size:8px;line-height:8px;"><br></div></div></a> / 50000 words. 0% done!
+					<br>
+					
+					<!-- this whole nightmare is the wordcount graph -->
+					
+					<meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, 
+                initial-scale=1.0">
+    <script src=
+"https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+    <title>
+    Mixed Chart Example <!-- idk where this title shows up -->
+    </title>
+  <!--  <style>
+        div {
+            height: 50vh;
+            width: 50vw;
+        }
+    </style> -->
+
+
+    <h1>
+    <center>NaNoWriMo 2024</center> <!-- graph title -->
+    </h1>
+    <div>
+        <!-- 
+            Create a canvas element
+            to render the chart 
+        -->
+        <canvas id="mixedChart"
+                width="400"
+                height="200"
+                style="border:1px solid #000000;"> <!-- puts a border around the graph -->
+        </canvas>
+    </div>
+    <script>
+        // Get the 2D rendering 
+        // context of the canvas
+        const ctx = document.
+        getElementById('mixedChart').
+        getContext('2d');
+
+        // Create a new Chart instance with
+        // a default chart type of 'bar'
+        const mixedChart = new Chart(ctx, {
+            // The default chart
+            // type for the graph
+            type: 'bar', 
+            data: {
+                // Labels for the X-axis
+                labels: 
+['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7','Day 8','Day 9','Day 10','Day 11','Day 12','Day 13','Day 14','Day 15','Day 16','Day 17','Day 18','Day 19','Day 20','Day 21','Day 22','Day 23','Day 24','Day 25','Day 26','Day 27','Day 28','Day 29','Day 30'],
+                // Datasets for the chart
+                datasets: [{
+                  type: 'line',
+                  //this is the goal line, don't mess with this one
+                    label: 'Daily Goal',
+                    data: [1667, 3334, 5001, 6668, 8335, 10002, 11669, 13336, 15003, 16670, 18337, 20004, 21617, 23338, 25005, 26672, 28339, 30006, 31673, 33340, 35007, 36674, 38341, 40008, 41675, 43392, 45009, 46676, 48343, 50000],
+                    borderColor: 
+                    'rgba(0,103,212)',
+                }, {
+                    //Chart type
+                    type: 'bar', 
+                    // Label for the dataset
+                    label: 'Daily Wordcount', 
+                    // Data points for the Y-axis
+                    // you have to manually go in here and edit the numbers day by day, so instead of 0 0 0 it'll be like 2000, 6000, etc. you monster
+                    data: [0, 0, 0, 0, 0], 
+                    // Background color for the bars
+                    backgroundColor: 
+                    'rgba(36,29,85)', 
+                    // Border color for the bars
+                    borderColor: 
+                    'rgba(36,29,85)', 
+                    // Border width for the bars
+                    borderWidth: 1 
+                    
+                }]
+            },
+            options: {
+                // It makes the chart responsive
+                responsive: true, 
+                // This plugin will display Title of chart
+                // this title doesn't seem to show up anywhere??? whatever
+                plugins: {
+                    title: {
+                        display: false,
+                        text: 
+                'NaNoWriMo 2024'
+                    }
+                }
+            }
+        });
+    </script>
+      
+      
+					
+					
+					
+					
+					
+					<!-- TAB 1 left paper end divs -->
+				</div>
+			</div>
+			<div id="tab1-p" class="paper right"> <!-- this makes it so there's paper on the right side -->
+			
+			<!-- this is where text goes -->
+				TITLE: 
+				<p>
+				GENRE:
+				<p>
+				SUMMARY:
+				<p>
+				EXCERPT:<p>
+				
+				<!-- this is for the coffee ring stain on the bottom of the page -->
+				<div style="position: relative;">
+   <img src="/decor/05.png" style="position: absolute; left: 154px; top: 127px;">
+</div>
+
+
+
+				<!-- TAB 1 right paper end divs -->
+			</div>
+			<!-- 	TAB 1 wrapper end div -->
+		</div>
+
+		<!-- TAB 2 wrapper -->
+		<div id="tab2-wrapper" class="tabcontent">
+			<div id="tab2-p" class="paper left">
+				<div class="left-in">
+				
+				
+				<!-- this is a polaroid with a link to my reprise macabre tag, you'll have to replace it with your own image as usual -->
+					<div style="position: relative;">
+    <a href="https://hakuryuu.tumblr.com/tagged/reprise%20macabre%20tag"><img src="/decor/warehouse small.png" style="position: absolute; left: 60px; top: 20px;"></a>
+</div>
+
+<!-- this is so that text will show up under the polaroid even though the text should wrap around it. whatever!!! -->
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<center>text text etc</center> -->
+
+					<!-- TAB 2 left paper end divs -->
+				</div>
+			</div>
+			<div id="tab2-p" class="paper right">
+			
+		    <!-- fucking around with letter images from here "https://pixels--galore-blog.tumblr.com/post/91607424176" -->
+				<img src="/letters/doodle h.webp"><img src="/letters/doodle i.webp">
+
+				<!-- TAB 2 right paper end div -->
+			</div>
+			<!-- TAB 2 wrapper end div -->
+		</div>
+
+		<div id="tab3-wrapper" class="tabcontent">
+			<div id="tab3-p" class="paper left">
+				<div class="left-in">
+					text goes here
+
+				</div>
+			</div>
+			<div id="tab3-p" class="paper right">
+				tab 3 pages
+
+			</div>
+		</div>
+
+		<div id="tab4-wrapper" class="tabcontent">
+			<div id="tab4-p" class="paper left">
+				<div class="left-in">
+				
+				<!-- my resources -->
+				  <a href="https://github.com/doqmeat/HTML-templates/blob/main/notebook/index.html">theme</a> <p>
+					<a href="https://folio.procreate.com/discussions/10/28/36677">paper texture</a> <p>
+					<a href="http://sozaiya405.chu.jp/405/font.htm#NEW%E3%83%9A%E3%83%B3%E5%AD%97P">font</a> <p>
+					<a href="https://resourceboy.com/textures/coffee-stain-textures/">coffee stain</a>
+					
+
+				</div>
+			</div>
+			<div id="tab4-p" class="paper right">
+				text goes here!
+
+
+			</div>
+		</div>
+
+
+		<div id="tab5-wrapper" class="tabcontent">
+			<div id="tab5-p" class="paper left">
+				<div class="left-in">
+					tab 5 pages
+
+				</div>
+			</div>
+			<div id="tab5-p" class="paper right">
+				text goes here!
+
+			</div>
+		</div>
+
+		<div id="tab6-wrapper" class="tabcontent">
+			<div id="tab6-p" class="paper left">
+				<div class="left-in">
+					text goes here
+
+				</div>
+			</div>
+			<div id="tab6-p" class="paper right">
+				text goes here
+
+			</div>
+		</div>
+
+		<div id="tab7-wrapper" class="tabcontent">
+			<div id="tab7-p" class="paper left">
+				<div class="left-in">
+					text goes here
+
+				</div>
+			</div>
+			<div id="tab7-p" class="paper right">
+				text goes here
+
+			</div>
+		</div>
+
+		<div id="tab8-wrapper" class="tabcontent">
+			<div id="tab8-p" class="paper left">
+				<div class="left-in">
+					text goes here
+
+				</div>
+			</div>
+			<div id="tab8-p" class="paper right">
+				text goes here
+
+			</div>
+		</div>
+
+
+		<!-- TEMPLATE for new set of TAB pages that you can copypaste
+
+	<div id="tab[num]-wrapper" class="tabcontent">
+	<div id="tab[num]-p" class="paper left">
+ <div class="left-in">
+		text goes here
+
+		</div></div>
+	<div id="tab[num]-p" class="paper right">
+		text goes here
+
+	</div></div>
+
+-->
+
+		<!-- NOTEBOOK wrapper end div -->
+	</div>
+
+
+	<script>
+		function openTab(tabName) {
+			var i;
+			var tabcontent = document.getElementById(tabName);
+			var otherContent = document.getElementsByClassName("tabcontent");
+			var defaultOpen = document.getElementById("defaultOpen");
+			for (i = 0; i < otherContent.length; i++) {
+				otherContent[i].style.display = "none";
+			}
+			tabcontent.style.display = "block";
+		}
+		defaultOpen.click();
+		defaultOpen.focus();
+
+	</script>
+</body>
+
+</html>
